@@ -1,0 +1,28 @@
+.videoDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center
+}
+.test{
+    
+    margin: 3% 0;
+}
+.videoInfo{
+    display: flex;
+    flex-direction: column
+}
+form{
+    text-align: center
+}
+#addVideoBtn{
+    margin: 5% 0 2%;
+}
+h1{
+    font-size: 2em;
+    font-weight: bold;
+}
+#uploadVideo{
+    margin-top: 15px;
+}
+    

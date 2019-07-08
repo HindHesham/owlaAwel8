@@ -1,0 +1,32 @@
+mat-form-field {
+    width: 100%;
+}
+table{
+    width: 100%
+}
+.twoTD{
+    width: 50%
+}
+#uploadImage{
+    display: flex;
+    flex-direction: column;
+    
+}
+#uploadImage label{
+    margin-bottom: 10px;
+    /* font-weight: bold; */
+    font-size: 16px;
+}
+
+#showImage img{
+    width: 80px;
+    height: 80px;
+}
+#uploadImageBtn{
+    display: flex;
+    justify-content: center;
+}
+#addTeacherBtn{
+    width: 100%;
+    
+}

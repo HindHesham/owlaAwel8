@@ -1,0 +1,66 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center" class="c">
+  <mat-card fxFlex="500px" fxFlex.xs="100%">
+    <mat-card-content>
+
+        <form enctype="multipart/form-data" [formGroup]="addTeacherForm" (ngSubmit) = "onSubmit(addTeacherForm.value)" fxLayout="column wrap"
+        fxLayoutAlign="center center" fxLayoutGap="10px">
+
+        <table class="fullwidth" cellspacing="2">
+            <tr>
+                <td>
+                    <mat-form-field>
+                        <input matInput  type="text" placeholder="First Name" formControlName="firstName">
+                        <mat-error *ngIf="hasError('firstName', 'required')" >First Name is required</mat-error>
+
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <input matInput placeholder="Last Name" formControlName="lastName">
+                        <mat-error *ngIf="hasError('lastName', 'required')" >Last Name is required</mat-error>
+
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+        <mat-form-field>
+            <input matInput type="email" id="defaultLoginFormEmail" formControlName="email" placeholder="E-mail">
+
+              <mat-error *ngIf="hasError('email', 'required')" >Email is required</mat-error> 
+              <!-- <mat-error *ngIf="hasError('email', 'email')">Email must be a valid email address</mat-error>  -->
+
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input matInput type="password" id="defaultLoginFormPassword" formControlName="password" placeholder="Password">
+            <mat-error *ngIf="hasError('password', 'required')" >password is required</mat-error>
+            <mat-error *ngIf="hasError('password', 'minlength')">Password must be at least 6 characters</mat-error>
+
+        </mat-form-field>
+   
+        <table>
+          <tr>
+            <td>
+              <div id="uploadImage">
+                  <label for="exampleInputFile" > Profile Photo</label>
+                  <input id="photo" type="file" (change)="onSelectFile($event)"/>
+              </div>
+            </td>
+            <td >
+              <div id="showImage">
+                <img *ngIf="imagePreview != null" required name="image" [src]="imagePreview" >
+              </div>
+            </td>
+          </tr>
+        </table>
+        <!-- <div id="uploadImageBtn">
+            <a mat-button color="primary" (click)="upload()">Upload Image</a>
+        </div> -->
+          <div>
+            <p id="errorMsg" >{{errorMsg}}</p>
+          </div>
+          <button id="addTeacherBtn" type="submit" [disabled]="!addTeacherForm.valid " mat-flat-button color="primary">Add Teacher</button>
+    </form>
+    </mat-card-content>
+  </mat-card>
+</section>
