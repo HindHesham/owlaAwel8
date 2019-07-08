@@ -8,11 +8,12 @@ export class SignupService {
 
 
   configUrl = 'http://localhost:3000/users/signUp';
-
+  
 
   signUp(data: any) {
     return this.http.post(this.configUrl, data);
   }
-  
+
+ 
  
 }

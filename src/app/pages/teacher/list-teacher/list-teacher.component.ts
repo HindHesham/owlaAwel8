@@ -20,8 +20,6 @@ export class ListTeacherComponent implements OnInit {
   displayedColumns = ['id','Name', 'Email', 'Action'];
   dataSource;
 
-  animal: string;
-  name: string;
 
   // @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -39,7 +37,8 @@ export class ListTeacherComponent implements OnInit {
 
   ListTeachers(){
     this.AddTeacherService.ListUsers().subscribe((data =>{
-      console.log("data", data);
+      console.log("data", data)
+
       this.getAllTeachers(data)
       
     }))
@@ -63,7 +62,7 @@ export class ListTeacherComponent implements OnInit {
   
   redirectToAdd(id){
     console.log("id", id);
-    this.Router.navigate(['/teachers/listVideos', {page: 'add'}]);
+    this.Router.navigate(['/teachers/listVideos', {page: 'add', teacherId: id}]);
     
   }
   

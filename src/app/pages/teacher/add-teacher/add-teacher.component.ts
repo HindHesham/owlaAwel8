@@ -18,7 +18,7 @@ export class AddTeacherComponent implements OnInit {
   profileUrl: any = "";
   data: any;
   selecetdFile : File;
-  imagePreview: any;
+  imagePreview: string;
 
   addTeacherForm = new FormGroup({
     firstName: new FormControl(''),

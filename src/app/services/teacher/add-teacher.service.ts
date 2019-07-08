@@ -6,8 +6,10 @@ export class AddTeacherService {
 
   constructor(private http: HttpClient) { }
   configUrl = 'http://localhost:3000/users/signUp';
-  listUsersUrl = 'http://localhost:3000/users/'
+  listUsersUrl = 'http://localhost:3000/users/';
   profileUrl = 'http://localhost:3000/profilePhoto';
+  videoUrl = 'http://localhost:3000/video';
+  addVideoUrl = 'http://localhost:3000/videos';
 
   dataObj = {};
 
@@ -35,4 +37,24 @@ export class AddTeacherService {
       }
       return this.http.get(this.listUsersUrl, this.dataObj);
     }
+
+    uoploadVideo(data: any) {
+      return this.http.post(this.videoUrl, data);
+    }
+
+    addVideoForm(data: any, videoUrl: any, teacherId: any){
+      this.dataObj = {
+        "teacherId":teacherId,
+        "class": data.class,
+        "subject": data.subject,
+        "lesson": data.lesson,
+        "unit": data.unit,
+        "videoUrl": videoUrl.data
+      }
+      console.log("obj", this.dataObj)
+
+      return this.http.post(this.addVideoUrl, this.dataObj);
+
+    }
+    
 }

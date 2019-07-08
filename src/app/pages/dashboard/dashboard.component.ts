@@ -1,62 +1,48 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import {ArrayDataSource} from '@angular/cdk/collections';
-import {FlatTreeControl} from '@angular/cdk/tree';
+// import {SelectionModel} from '@angular/cdk/collections';
+// import {FlatTreeControl} from '@angular/cdk/tree';
+// import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
+// import {BehaviorSubject} from 'rxjs';
 
-const TREE_DATA: ExampleFlatNode[] = [
-  {
-    name: 'Fruit',
-    expandable: true,
-    level: 0,
-  }, {
-    name: 'Apple',
-    expandable: false,
-    level: 1,
-  }, {
-    name: 'Banana',
-    expandable: false,
-    level: 1,
-  }, {
-    name: 'Fruit loops',
-    expandable: false,
-    level: 1,
-  }, {
-    name: 'Vegetables',
-    expandable: true,
-    level: 0,
-  }, {
-    name: 'Green',
-    expandable: true,
-    level: 1,
-  }, {
-    name: 'Broccoli',
-    expandable: false,
-    level: 2,
-  }, {
-    name: 'Brussel sprouts',
-    expandable: false,
-    level: 2,
-  }, {
-    name: 'Orange',
-    expandable: true,
-    level: 1,
-  }, {
-    name: 'Pumpkins',
-    expandable: false,
-    level: 2,
-  }, {
-    name: 'Carrots',
-    expandable: false,
-    level: 2,
-  }
-];
+// interface FoodNode {
+//   name: string;
+//   children?: FoodNode[];
+// }
 
-/** Flat node with expandable and level information */
-interface ExampleFlatNode {
-  expandable: boolean;
-  name: string;
-  level: number;
-  isExpanded?: boolean;
-}
+// const TREE_DATA: FoodNode[] = [
+//   {
+//     name: 'Fruit',
+//     children: [
+//       {name: 'Apple'},
+//       {name: 'Banana'},
+//       {name: 'Fruit loops'},
+//     ]
+//   }, {
+//     name: 'Vegetables',
+//     children: [
+//       {
+//         name: 'Green',
+//         children: [
+//           {name: 'Broccoli'},
+//           {name: 'Brussel sprouts'},
+//         ]
+//       }, {
+//         name: 'Orange',
+//         children: [
+//           {name: 'Pumpkins'},
+//           {name: 'Carrots'},
+//         ]
+//       },
+//     ]
+//   },
+// ];
+
+// /** Flat node with expandable and level information */
+// interface ExampleFlatNode {
+//   expandable: boolean;
+//   name: string;
+//   level: number;
+// }
 
 
 @Component({
@@ -67,36 +53,31 @@ interface ExampleFlatNode {
 
 export class DashboardComponent implements OnInit {
 
-  treeControl = new FlatTreeControl<ExampleFlatNode>(
-    node => node.level, node => node.expandable);
+  // private _transformer = (node: FoodNode, level: number) => {
+  //   return {
+  //     expandable: !!node.children && node.children.length > 0,
+  //     name: node.name,
+  //     level: level,
+  //   };
+  // }
 
-    dataSource = new ArrayDataSource(TREE_DATA);
-
-    hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
-    
-    constructor() {
-    }
   
-    ngOnInit() {
-    }
 
-    
-    getParentNode(node: ExampleFlatNode) {
-      const nodeIndex = TREE_DATA.indexOf(node);
+  // treeControl = new FlatTreeControl<ExampleFlatNode>(
+  //   node => node.level, node => node.expandable);
 
-      for (let i = nodeIndex - 1; i >= 0; i--) {
-        if (TREE_DATA[i].level === node.level - 1) {
-          return TREE_DATA[i];
-        }
-      }
+  // treeFlattener = new MatTreeFlattener(
+  //     this._transformer, node => node.level, node => node.expandable, node => node.children);
 
-      return null;
-    }
+  // dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-    shouldRender(node: ExampleFlatNode) {
-      const parent = this.getParentNode(node);
-      return !parent || parent.isExpanded;
-    }
+  constructor() {
+    // this.dataSource.data = TREE_DATA;
   }
- 
 
+  ngOnInit() {
+  }
+
+  // hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
+
+}
