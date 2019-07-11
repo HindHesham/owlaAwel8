@@ -18,7 +18,7 @@ import {MaterialModule} from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
 import { LoginComponent } from './pages/login/login.component';
-
+import { ChecklistDatabase } from './pages/dashboard/dashboard.component'
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import { LoginComponent } from './pages/login/login.component';
     MaterialModule, 
     FlexLayoutModule,
   ],
-  providers: [ LoginService, SignupService, AddTeacherService],
+  providers: [ LoginService, SignupService, AddTeacherService, ChecklistDatabase],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA ]
 })
