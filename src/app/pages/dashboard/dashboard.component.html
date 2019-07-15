@@ -1,4 +1,4 @@
-<div class="example-button-row">
+<!-- <div class="example-button-row">
   <button mat-raised-button>
      <a routerLink="/teachers/allTeachers">
       Teachers 
@@ -14,34 +14,165 @@
       add
     </a>
 </button>
-</div>
+</div> -->
 
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
-    <button mat-icon-button disabled></button>
-    <mat-checkbox class="checklist-leaf-node"
-                  [checked]="checklistSelection.isSelected(node)"
-                  (change)="todoLeafItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
-  </mat-tree-node>
+<div id="mainContainer">
 
-  <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding>
-    <button mat-icon-button disabled></button>
-    <mat-form-field>
-      <input matInput #itemValue placeholder="New item...">
-    </mat-form-field>
-    <button mat-button (click)="saveNode(node, itemValue.value)">Save</button>
-  </mat-tree-node>
-
-  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-    <button mat-icon-button matTreeNodeToggle (click)="test()"
-            [attr.aria-label]="'toggle ' + node.filename">
-      <mat-icon class="mat-icon-rtl-mirror">
-        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-      </mat-icon>
+  <!-- start sections div -->
+  <div class="sectionContainer">
+    <button class="sectionContainerBtn" mat-raised-button color="primary" (click)="getAllLeveles()">
+        المرحله
     </button>
-    <mat-checkbox [checked]="descendantsAllSelected(node)"
-                  [indeterminate]="descendantsPartiallySelected(node)"
-                  (change)="todoItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
-    <button mat-icon-button (click)="addNewItem(node)"><mat-icon>add</mat-icon></button>
-  </mat-tree-node>
-</mat-tree>
+
+
+    <div class="sectionContentContainer" >
+        <div class="sectionsDiv"> 
+          <button mat-stroked-button color="primary" *ngFor="let level of renderLevelsArray()" (click)="class = true">
+              {{level.name}}
+          </button>
+        </div>
+       
+    </div>
+
+
+    <!-- <div class="sectionContentContainer" >
+      <div class="sectionsDiv"> 
+        <button mat-stroked-button color="primary" (click)="class = true">
+            المرحله الابتدائيه 
+        </button>
+      </div>
+      <div class="sectionsDiv"> 
+          <button mat-stroked-button color="primary"> المرحله الاعداديه </button>
+        </div>
+      <div class="sectionsDiv"> 
+          <button mat-stroked-button color="primary"> المرحله الثانويه </button>
+      </div>
+    </div> -->
+
+  </div>
+  <!-- end secti0ons div -->
+
+  <!-- start levels div -->
+  <div class="sectionContainer" *ngIf="class === true">
+    <div>
+        <button class="sectionContainerBtn" mat-raised-button color="primary">
+            الصفوف
+        </button>
+  
+        <button mat-icon-button color="primary" aria-label="icon-button with an add icon" (click)="addClassInput = true">
+            <mat-icon>add</mat-icon>
+        </button>
+       
+        <input matInput type="text" #classNode name="classNode" class="addInput" placeholder="add class" *ngIf="addClassInput === true"  >
+        <button mat-icon-button color="primary" aria-label="icon-button with a done icon" *ngIf="addClassInput === true" (click)="addClass()">
+          <mat-icon>done</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" aria-label="icon-button with a clear icon" *ngIf="addClassInput === true" (click)=" addClassInput = false">
+          <mat-icon>clear</mat-icon>
+        </button>
+    </div>
+      
+      <div class="sectionContentContainer">
+          <div class="sectionsDiv" *ngFor="let class of renderClassesArray()"> 
+            <button mat-stroked-button color="primary" (click)="subject = true">
+                 {{class.name}}
+            </button>
+          </div>     
+      </div>
+  </div>
+  <!-- end levels div -->
+
+  <!-- start subjects section -->
+  <div class="sectionContainer" *ngIf="subject === true">
+      <div>
+          <button class="sectionContainerBtn" mat-raised-button color="primary">
+              المواد
+          </button>
+
+          <button mat-icon-button color="primary" aria-label="icon-button with an add icon" (click)="addSubjectInput = true">
+              <mat-icon>add</mat-icon>
+          </button>
+          
+          <input matInput type="text" #subjectNode  class="addInput" placeholder="add class" *ngIf="addSubjectInput === true"  >
+          <button mat-icon-button color="primary" aria-label="icon-button with a done icon" *ngIf="addSubjectInput === true" (click)="addSubject()">
+            <mat-icon>done</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" aria-label="icon-button with a clear icon" *ngIf="addSubjectInput === true" (click)=" addSubjectInput = false">
+              <mat-icon>clear</mat-icon>
+          </button>
+      </div>
+
+      <div class="sectionContentContainer">
+          <div class="sectionsDiv" *ngFor="let subject of renderSubjectsArray()"> 
+            <button mat-stroked-button color="primary" (click)="unit = true">
+                 {{subject.name}}
+            </button>
+          </div>     
+      </div>
+  </div>
+  <!-- end subject section -->
+
+  <!-- start units section -->
+    <div class="sectionContainer" *ngIf="unit === true">
+        <div>
+            <button class="sectionContainerBtn" mat-raised-button color="primary">
+                الوحدات
+            </button>
+  
+            <button mat-icon-button color="primary" aria-label="icon-button with an add icon" (click)="addUnitInput = true">
+                <mat-icon>add</mat-icon>
+            </button>
+            
+            <input matInput type="text" #unitNode  class="addInput" placeholder="add class" *ngIf="addUnitInput === true"  >
+            <button mat-icon-button color="primary" aria-label="icon-button with a done icon" *ngIf="addUnitInput === true" (click)="addUnit()">
+              <mat-icon>done</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" aria-label="icon-button with a clear icon" *ngIf="addUnitInput === true" (click)=" addUnitInput = false">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </div>
+
+        <div class="sectionContentContainer">
+            <div class="sectionsDiv" *ngFor="let unit of renderUnitsArray()"> 
+              <button mat-stroked-button color="primary" (click)="lesson = true">
+                   {{unit.name}}
+              </button>
+            </div>     
+        </div>
+
+    </div>
+  <!-- end units section -->
+
+  <!-- start lessons section -->
+
+  <div class="sectionContainer" *ngIf="lesson === true">
+      <div>
+          <button class="sectionContainerBtn" mat-raised-button color="primary">
+              الدروس
+          </button>
+
+          <button mat-icon-button color="primary" aria-label="icon-button with an add icon" (click)="addLessonInput = true">
+              <mat-icon>add</mat-icon>
+          </button>
+          
+          <input matInput type="text" #lessonNode  class="addInput" placeholder="add class" *ngIf="addLessonInput === true"  >
+          <button mat-icon-button color="primary" aria-label="icon-button with a done icon" *ngIf="addLessonInput === true" (click)="addLesson()">
+            <mat-icon>done</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" aria-label="icon-button with a clear icon" *ngIf="addLessonInput === true" (click)=" addLessonInput = false">
+              <mat-icon>clear</mat-icon>
+          </button>
+      </div>
+
+      <div class="sectionContentContainer">
+          <div class="sectionsDiv" *ngFor="let lesson of renderLessonsArray()"> 
+            <button mat-stroked-button color="primary" >
+                 {{lesson.name}}
+            </button>
+          </div>     
+      </div>
+
+  </div>
+  <!-- end lessons section -->
+
+</div>

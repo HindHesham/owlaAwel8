@@ -1,0 +1,30 @@
+#mainContainer{
+    background-color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    padding: 25px
+}
+.sectionContainerBtn{
+    width: 15rem;
+    font-size: 1.5rem;
+    padding: 7px;
+}
+
+.sectionContentContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.sectionsDiv{
+    padding: 20px;
+}
+
+.addInput{
+    height: 25px;
+    font-size: 13px;
+}
