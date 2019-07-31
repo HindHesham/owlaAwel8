@@ -10,7 +10,8 @@ import { RouterModule } from '@angular/router';
 import { ViewsModule } from './pages/views.module';
 import { LoginService } from './services/login/login.service';
 import { SignupService } from './services/signup/signup.service';
-import { AddTeacherService } from './services/teacher/add-teacher.service'
+import { AddTeacherService } from './services/teacher/add-teacher.service';
+import { LevelsService } from './services/levels/levels.service'
 
 import { ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -18,11 +19,15 @@ import {MaterialModule} from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
 import { LoginComponent } from './pages/login/login.component';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    MainNavComponent,
   ],
   entryComponents: [
   ],
@@ -40,9 +45,10 @@ import { LoginComponent } from './pages/login/login.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule, 
-    FlexLayoutModule,
+    FlexLayoutModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
+    
   ],
-  providers: [ LoginService, SignupService, AddTeacherService],
+  providers: [ LoginService, SignupService, AddTeacherService, LevelsService],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA ]
 })

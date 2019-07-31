@@ -18,6 +18,8 @@ import { MatButtonModule,
   MatRadioModule,      
   MatSelectModule,      
   MatOptionModule,
+  MatSidenavModule, 
+  MatListModule
  } from '@angular/material';
 
 
@@ -49,6 +51,8 @@ import { ListStudentsComponent } from './students/list-students/list-students.co
     MatNativeDateModule,      
     MatRadioModule,         
     MatOptionModule,
+    MatSidenavModule, 
+    MatListModule
   ],
   declarations: [
     SignupComponent,

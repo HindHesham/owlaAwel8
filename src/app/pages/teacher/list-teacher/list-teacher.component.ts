@@ -24,29 +24,27 @@ export class ListTeacherComponent implements OnInit {
   // @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor( private AddTeacherService: AddTeacherService, private Router: Router ) {
-   
+
   }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.ListTeachers();
   }
-
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  // }
 
   ListTeachers(){
     this.AddTeacherService.ListUsers().subscribe((data =>{
       console.log("data", data)
-
       this.getAllTeachers(data)
       
     }))
   }
 
   getAllTeachers( data ){
-    
     this.dataSource = new MatTableDataSource(data); 
+    // console.log(
+    //   'daaa ', this.dataSource
+    // );
+    
 
   }
   redirectToDelete(id){
@@ -65,20 +63,5 @@ export class ListTeacherComponent implements OnInit {
     this.Router.navigate(['/teachers/listVideos', {page: 'add', teacherId: id}]);
     
   }
-  
-
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(ModalComponent, {
-  //     width: '250px',
-  //     height: '25%',
-  //     data: {name: this.name, animal: this.animal}
-  //   });
-  //   dialogRef.updatePosition({ top: '3%', left: '20%' });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     this.animal = result;
-  //   });
-  // }
 
 }

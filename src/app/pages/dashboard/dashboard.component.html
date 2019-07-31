@@ -1,54 +1,30 @@
-<!-- <div class="example-button-row">
-  <button mat-raised-button>
-     <a routerLink="/teachers/allTeachers">
-      Teachers 
-     </a>
-  </button>
-  <button mat-raised-button>
-      <a routerLink="/students/allStudents">
-        Students
-      </a>
-  </button>
-  <button mat-raised-button>
-    <a routerLink="/teachers/addTeachers">
-      add
-    </a>
-</button>
-</div> -->
-
 <div id="mainContainer">
 
   <!-- start sections div -->
   <div class="sectionContainer">
-    <button class="sectionContainerBtn" mat-raised-button color="primary" (click)="getAllLeveles()">
+    <button class="sectionContainerBtn" mat-raised-button color="primary" >
         المرحله
     </button>
-
+    <button mat-icon-button color="primary" aria-label="icon-button with an add icon" (click)="addLevelInput = true">
+      <mat-icon>add</mat-icon>
+    </button>
+  
+    <input matInput type="text" #levelNode name="levelNode" class="addInput" placeholder="add level" *ngIf="addLevelInput === true"  >
+    <button mat-icon-button color="primary" aria-label="icon-button with a done icon" *ngIf="addLevelInput === true" (click)="addLevel()">
+      <mat-icon>done</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" aria-label="icon-button with a clear icon" *ngIf="addLevelInput === true" (click)=" addLevelInput = false">
+      <mat-icon>clear</mat-icon>
+    </button>
 
     <div class="sectionContentContainer" >
         <div class="sectionsDiv"> 
-          <button mat-stroked-button color="primary" *ngFor="let level of renderLevelsArray()" (click)="class = true">
+          <button mat-stroked-button color="primary" *ngFor="let level of renderLevelsArray()" (click)="listClasses(level._id)">
               {{level.name}}
           </button>
         </div>
        
     </div>
-
-
-    <!-- <div class="sectionContentContainer" >
-      <div class="sectionsDiv"> 
-        <button mat-stroked-button color="primary" (click)="class = true">
-            المرحله الابتدائيه 
-        </button>
-      </div>
-      <div class="sectionsDiv"> 
-          <button mat-stroked-button color="primary"> المرحله الاعداديه </button>
-        </div>
-      <div class="sectionsDiv"> 
-          <button mat-stroked-button color="primary"> المرحله الثانويه </button>
-      </div>
-    </div> -->
-
   </div>
   <!-- end secti0ons div -->
 
@@ -74,7 +50,7 @@
       
       <div class="sectionContentContainer">
           <div class="sectionsDiv" *ngFor="let class of renderClassesArray()"> 
-            <button mat-stroked-button color="primary" (click)="subject = true">
+            <button mat-stroked-button color="primary" (click)="listSubjects(class._id)">
                  {{class.name}}
             </button>
           </div>     
@@ -94,7 +70,7 @@
           </button>
           
           <input matInput type="text" #subjectNode  class="addInput" placeholder="add class" *ngIf="addSubjectInput === true"  >
-          <button mat-icon-button color="primary" aria-label="icon-button with a done icon" *ngIf="addSubjectInput === true" (click)="addSubject()">
+          <button mat-icon-button color="primary" aria-label="icon-button with a done icon" *ngIf="addSubjectInput === true" (click)="addSubject(class._id, class.levelId)">
             <mat-icon>done</mat-icon>
           </button>
           <button mat-icon-button color="primary" aria-label="icon-button with a clear icon" *ngIf="addSubjectInput === true" (click)=" addSubjectInput = false">
@@ -104,7 +80,7 @@
 
       <div class="sectionContentContainer">
           <div class="sectionsDiv" *ngFor="let subject of renderSubjectsArray()"> 
-            <button mat-stroked-button color="primary" (click)="unit = true">
+            <button mat-stroked-button color="primary" (click)="listUnit(subject._id)" >
                  {{subject.name}}
             </button>
           </div>     
@@ -134,7 +110,7 @@
 
         <div class="sectionContentContainer">
             <div class="sectionsDiv" *ngFor="let unit of renderUnitsArray()"> 
-              <button mat-stroked-button color="primary" (click)="lesson = true">
+              <button mat-stroked-button color="primary" (click)="listLessons(unit._id)">
                    {{unit.name}}
               </button>
             </div>     
