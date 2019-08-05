@@ -52,18 +52,34 @@
           
 
             <table class="fullwidth" cellspacing="2">
-            
+            <tr>
+              <td>
+                  <mat-form-field>
+                      <mat-label>levels</mat-label>
+                      <mat-select formControlName="level" >
+                        <mat-option *ngFor="let level of levels" [value]="level.name" (onSelectionChange) = "listClasses(level._id)">{{level.name}}</mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="hasError('level', 'required')" >level is required</mat-error>
+
+                  </mat-form-field>
+              </td>
+            </tr>
               <tr>
                   <td>
                       <mat-form-field>
-                          <input matInput  type="text" placeholder="الصف" formControlName="class">
+                          <mat-label>الصف</mat-label>
+                          <mat-select formControlName="class" >
+                            <mat-option *ngFor="let class of classes" [value]="class.name" (onSelectionChange) = "listSubjects(class._id)">{{class.name}}</mat-option>
+                          </mat-select>
                           <mat-error *ngIf="hasError('class', 'required')" >class is required</mat-error>
-  
                       </mat-form-field>
                   </td>
                   <td>
                       <mat-form-field>
-                          <input matInput placeholder="الماده" formControlName="subject">
+                          <mat-label>الماده</mat-label>
+                          <mat-select formControlName="subject" >
+                            <mat-option *ngFor="let subject of subjects" [value]="subject.name" (onSelectionChange) = "listUnits(subject._id)">{{subject.name}}</mat-option>
+                          </mat-select>
                           <mat-error *ngIf="hasError('subject', 'required')" >subject is required</mat-error>
   
                       </mat-form-field>
@@ -76,14 +92,20 @@
                   <tr>
                       <td>
                           <mat-form-field>
-                              <input matInput  type="text" placeholder="الوحده" formControlName="unit">
+                              <mat-label>الوحده</mat-label>
+                              <mat-select formControlName="unit" >
+                                <mat-option *ngFor="let unit of units" [value]="unit.name" (onSelectionChange) = "listLessons(unit._id)">{{unit.name}}</mat-option>
+                              </mat-select>
                               <mat-error *ngIf="hasError('unit', 'required')" >unit is required</mat-error>
       
                           </mat-form-field>
                       </td>
                       <td>
                           <mat-form-field>
-                              <input matInput placeholder="الدرس" formControlName="lesson">
+                              <mat-label>الدرس</mat-label>
+                              <mat-select formControlName="lesson" >
+                                <mat-option *ngFor="let lesson of lessons" [value]="lesson.name" >{{lesson.name}}</mat-option>
+                              </mat-select>
                               <mat-error *ngIf="hasError('lesson', 'required')" >lesson is required</mat-error>
       
                           </mat-form-field>

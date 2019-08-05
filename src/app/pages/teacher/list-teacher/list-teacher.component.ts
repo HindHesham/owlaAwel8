@@ -23,9 +23,7 @@ export class ListTeacherComponent implements OnInit {
 
   // @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor( private AddTeacherService: AddTeacherService, private Router: Router ) {
-
-  }
+  constructor( private AddTeacherService: AddTeacherService, private Router: Router ) {}
 
   ngOnInit() {    
     this.ListTeachers();
@@ -33,20 +31,16 @@ export class ListTeacherComponent implements OnInit {
 
   ListTeachers(){
     this.AddTeacherService.ListUsers().subscribe((data =>{
-      console.log("data", data)
-      this.getAllTeachers(data)
+      let res = data['data'];
+      this.getAllTeachers(res)
       
     }))
   }
 
   getAllTeachers( data ){
     this.dataSource = new MatTableDataSource(data); 
-    // console.log(
-    //   'daaa ', this.dataSource
-    // );
-    
-
   }
+  
   redirectToDelete(id){
     console.log("id", id);
     

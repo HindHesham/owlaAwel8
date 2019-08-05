@@ -42,6 +42,7 @@ export class AddTeacherService {
 
     addVideoForm(data: any, videoUrl: any, teacherId: any){
       this.dataObj = {
+        "level": data.level,
         "teacherId":teacherId,
         "class": data.class,
         "subject": data.subject,

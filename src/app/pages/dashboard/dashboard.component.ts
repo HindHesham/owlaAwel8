@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
   lessonData: any;
   lessonId: any;
 
-  constructor( private LevelsService: LevelsService) {
+  constructor( private LevelsService: LevelsService ) {
     this.listLevel();
   }
 
